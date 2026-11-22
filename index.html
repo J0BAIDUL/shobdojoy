@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>ShobdoJoy (শব্দজয়) — Offline English Vocabulary Mastery for Bangladesh</title>
+  <meta name="description" content="Master 528 curated English words with exact Bangla nuance, Synonym Situation Studio, 5,280 quizzes, and Spaced Repetition — 100% offline Android app by Jobaverse.">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #FAFAF8;
+      --bg-dark: #0C0C0E;
+      --surface-light: #FFFFFF;
+      --surface-dark: #161618;
+      --surface2-light: #F2F2EF;
+      --surface2-dark: #1F1F22;
+      --line-light: rgba(0, 0, 0, 0.09);
+      --line-dark: rgba(255, 255, 255, 0.09);
+      --t1-light: #1A1A1C;
+      --t1-dark: #F4F4F5;
+      --t2-light: #6A6A70;
+      --t2-dark: #9B9BA1;
+      --t3-light: #8C8C92;
+      --t3-dark: #74747A;
+      --accent-light: #12A596;
+      --accent-dark: #2FD2C0;
+      --on-accent-light: #FFFFFF;
+      --on-accent-dark: #0B130F;
+      --positive-light: #1B9A5E;
+      --positive-dark: #51D08C;
+      --gold-light: #A87C24;
+      --gold-dark: #E8B85A;
+
+      --bg: var(--bg-light);
+      --surface: var(--surface-light);
+      --surface2: var(--surface2-light);
+      --line: var(--line-light);
+      --t1: var(--t1-light);
+      --t2: var(--t2-light);
+      --t3: var(--t3-light);
+      --accent: var(--accent-light);
+      --on-accent: var(--on-accent-light);
+      --positive: var(--positive-light);
+      --gold: var(--gold-light);
+
+      @media (prefers-color-scheme: dark) {
+        --bg: var(--bg-dark);
+        --surface: var(--surface-dark);
+        --surface2: var(--surface2-dark);
+        --line: var(--line-dark);
+        --t1: var(--t1-dark);
+        --t2: var(--t2-dark);
+        --t3: var(--t3-dark);
+        --accent: var(--accent-dark);
+        --on-accent: var(--on-accent-dark);
+        --positive: var(--positive-dark);
+        --gold: var(--gold-dark);
+      }
+
+      @supports (color: light-dark(white, black)) {
+        --bg: light-dark(var(--bg-light), var(--bg-dark));
+        --surface: light-dark(var(--surface-light), var(--surface-dark));
+        --surface2: light-dark(var(--surface2-light), var(--surface2-dark));
+        --line: light-dark(var(--line-light), var(--line-dark));
+        --t1: light-dark(var(--t1-light), var(--t1-dark));
+        --t2: light-dark(var(--t2-light), var(--t2-dark));
+        --t3: light-dark(var(--t3-light), var(--t3-dark));
+        --accent: light-dark(var(--accent-light), var(--accent-dark));
+        --on-accent: light-dark(var(--on-accent-light), var(--on-accent-dark));
+        --positive: light-dark(var(--positive-light), var(--positive-dark));
+        --gold: light-dark(var(--gold-light), var(--gold-dark));
+      }
+
+      color-scheme: light dark;
+      accent-color: var(--accent);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--t1);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding-inline: 20px;
+    }
+
+    /* Compact Editorial Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--t1);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.3px;
+    }
+    .brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: block;
+    }
+    .brand span.bn {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 15px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--t2);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    nav a:hover { color: var(--t1); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 12px;
+      padding: 13px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+    .btn-primary:hover { opacity: 0.92; }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--t1);
+      border-color: var(--line);
+    }
+    .btn-secondary:hover { background: var(--surface2); }
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 999px;
+    }
+
+    /* Hero */
+    .hero {
+      padding-block: 52px 40px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+    }
+    .kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -1.2px;
+      font-weight: 800;
+      color: var(--t1);
+    }
+    .hero-bn {
+      margin: 14px 0 0;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .hero-sub {
+      margin: 14px 0 0;
+      font-size: 16px;
+      color: var(--t2);
+      max-width: 520px;
+    }
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .hero-meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 12.5px;
+      color: var(--t3);
+      font-weight: 600;
+    }
+    .phone-frame {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 10px;
+      max-width: 310px;
+      margin: 0 auto;
+    }
+    .phone-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+      display: block;
+      border: 1px solid var(--line);
+    }
+
+    /* Metric Ledger */
+    .metrics {
+      margin: 18px 0 56px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .metric {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+    }
+    .metric:last-child { border-right: 0; }
+    .metric .label {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--t3);
+    }
+    .metric .val {
+      margin-top: 5px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--t1);
+    }
+    .metric .note {
+      margin-top: 2px;
+      font-size: 12.5px;
+      color: var(--t2);
+    }
+
+    /* Sections */
+    section { padding-block: 48px; }
+    .section-head {
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(24px, 3.4vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -0.7px;
+      font-weight: 800;
+    }
+    .section-head p {
+      margin: 10px 0 0;
+      color: var(--t2);
+      font-size: 15.5px;
+    }
+
+    /* 4-Screen Showcase */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .shot-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .shot-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      display: block;
+    }
+    .shot-card h3 {
+      margin: 2px 0 4px;
+      font-size: 15.5px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+    .shot-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--t2);
+      line-height: 1.45;
+    }
+
+    /* 3-Step Install Guide */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .step-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .step-card p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--t2);
+    }
+    .verify-bar {
+      margin-top: 14px;
+      padding: 13px 16px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      font-size: 12.5px;
+      color: var(--t2);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      align-items: center;
+    }
+    .verify-bar code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: var(--t1);
+      font-size: 12px;
+      background: var(--surface2);
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    /* Pricing Grid */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .plan {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .plan.pro {
+      border: 1.5px solid var(--accent);
+    }
+    .plan-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      background: var(--surface2);
+      color: var(--t2);
+      margin-bottom: 12px;
+    }
+    .plan.pro .plan-badge {
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--accent);
+    }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 4px 0 14px;
+    }
+    .price {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+    .price-old {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--t2);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: var(--t2);
+    }
+    .price-note {
+      font-size: 13px;
+      color: var(--t2);
+      font-weight: 600;
+    }
+    .plan ul {
+      list-style: none;
+      margin: 0 0 22px;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+      flex: 1;
+    }
+    .plan li {
+      font-size: 14px;
+      color: var(--t1);
+      padding-left: 22px;
+      position: relative;
+    }
+    .plan li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--positive);
+      font-weight: 800;
+    }
+
+    /* Native Accessible FAQ Accordion (modern-web-guidance compliant) */
+    .accordion {
+      display: grid;
+      gap: 10px;
+      max-width: 780px;
+    }
+    .accordion details {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 0 18px;
+    }
+    .accordion summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 0;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--t1);
+      cursor: pointer;
+    }
+    .accordion summary::-webkit-details-marker { display: none; }
+    .accordion summary:focus:not(:focus-visible) { outline: none; }
+    .accordion summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+    .accordion summary::before {
+      content: "";
+      inline-size: 1em;
+      block-size: 1em;
+      flex-shrink: 0;
+      background-color: var(--accent);
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat center / contain;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat center / contain;
+      rotate: -90deg;
+    }
+    .accordion details[open] > summary::before {
+      rotate: 0deg;
+    }
+    .accordion details::details-content {
+      interpolate-size: allow-keywords;
+      overflow: clip;
+      contain: layout;
+    }
+    .accordion details:not([open])::details-content {
+      block-size: 0;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .accordion summary::before {
+        transition: rotate 0.2s ease;
+      }
+      .accordion details::details-content {
+        transition: block-size, content-visibility, display;
+        transition-duration: 0.26s;
+        transition-timing-function: ease-in-out;
+        transition-behavior: allow-discrete;
+      }
+    }
+    .faq-body {
+      padding: 0 0 16px 26px;
+      font-size: 14px;
+      color: var(--t2);
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 32px;
+      border-top: 1px solid var(--line);
+      padding: 28px 0 44px;
+      color: var(--t3);
+      font-size: 13px;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; padding-top: 32px; gap: 32px; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .metric:nth-child(2) { border-right: 0; }
+      .metric:nth-child(1), .metric:nth-child(2) { border-bottom: 1px solid var(--line); }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .steps, .pricing-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      nav a.hide-sm { display: none; }
+      .gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <img src="assets/app-icon.png" alt="ShobdoJoy icon" width="32" height="32">
+        <span>ShobdoJoy <span class="bn">শব্দজয়</span></span>
+      </a>
+      <nav aria-label="Primary">
+        <a class="hide-sm" href="#features">Screens</a>
+        <a class="hide-sm" href="#install">Install</a>
+        <a class="hide-sm" href="#pricing">Pricing</a>
+        <a class="hide-sm" href="#faq">FAQ</a>
+        <a class="btn btn-primary btn-sm js-apk-link" href="./ShobdoJoy-v1.0.0-release.apk" download>Download APK</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="kicker">100% OFFLINE · ANDROID 7.0+ · BY JOBAVERSE</div>
+        <h1>Master 528 English words — with exact Bangla nuance.</h1>
+        <p class="hero-bn">প্রতিদিন ১টি শব্দ · Synonym Situation Studio · Smart Review · ৫,২৮০টি কুইজ</p>
+        <p class="hero-sub">
+          Built for BCS, Bank, IELTS, university &amp; school learners in Bangladesh. Every word pairs natural Bangla phonetics, real-life synonym usage rules, and spaced repetition in a calm, distraction-free app.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary js-apk-link" href="./ShobdoJoy-v1.0.0-release.apk" download>
+            Download Free APK (5.8 MB)
+          </a>
+          <a class="btn btn-secondary" href="#install">How to install</a>
+        </div>
+        <div class="hero-meta">
+          <span class="js-version-label">Version 1.0.0</span>
+          <span>· 14 free words across all 3 levels</span>
+          <span>· Zero ads &amp; zero sign-up</span>
+        </div>
+      </div>
+
+      <div class="phone-frame">
+        <img
+          src="assets/screen-today.png"
+          alt="ShobdoJoy Today Hub showing Euphemism word of the day and three learning levels"
+          width="720"
+          height="1603"
+          fetchpriority="high"
+        >
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="metrics" aria-label="Key app highlights">
+        <div class="metric">
+          <div class="label">CURATED DICTIONARY</div>
+          <div class="val">528 words</div>
+          <div class="note">Foundation, Explorer &amp; Master</div>
+        </div>
+        <div class="metric">
+          <div class="label">PRACTICE BANK</div>
+          <div class="val">5,280 Qs</div>
+          <div class="note">Meaning, situation, antonym &amp; cloze</div>
+        </div>
+        <div class="metric">
+          <div class="label">LIGHTWEIGHT OFFLINE</div>
+          <div class="val">5.8 MB</div>
+          <div class="note">Works without internet anywhere</div>
+        </div>
+        <div class="metric">
+          <div class="label">LIFETIME PRO</div>
+          <div class="val js-launch-price">৳199</div>
+          <div class="note">One-time via bKash · No monthly fee</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="container" id="features">
+      <div class="section-head">
+        <div class="kicker">INSIDE SHOBDOJOY</div>
+        <h2>Designed for deep retention, not mindless tapping.</h2>
+        <p>Every word takes 5 minutes to master — sound, Bangla memory hook, synonym traps, contextual examples, and a 10-question mastery quiz.</p>
+      </div>
+
+      <div class="gallery">
+        <article class="shot-card">
+          <img src="assets/screen-synonyms.png" alt="Synonym Situation Studio comparing exact usage and avoid rules" width="720" height="1603" loading="lazy">
+          <div>
+            <h3>Synonym Situation Studio</h3>
+            <p>Compare 5–6 close synonyms side by side — know exactly when to use each word and where <em>not</em> to use it.</p>
+          </div>
+        </article>
+
+        <article class="shot-card">
+          <img src="assets/screen-exam.png" alt="All-528 Boss Exam summary showing circular score ring and missed words" width="720" height="1603" loading="lazy">
+          <div>
+            <h3>Random Boss &amp; Level Exams</h3>
+            <p>Take unlimited 10-question randomized exams, star tricky words, and send missed words straight to your review queue.</p>
+          </div>
+        </article>
+
+        <article class="shot-card">
+          <img src="assets/screen-forecast.png" alt="Finish Forecast sheet showing animated trajectory curve and projected finish dates" width="720" height="1603" loading="lazy">
+          <div>
+            <h3>Finish Date Forecast</h3>
+            <p>Track all 3 independent levels together and preview your exact completion date at 1, 2, or 3 words per day.</p>
+          </div>
+        </article>
+
+        <article class="shot-card">
+          <img src="assets/screen-dark.png" alt="Obsidian Dark mode showing spaced repetition review and practice exams" width="720" height="1603" loading="lazy">
+          <div>
+            <h3>Calm Obsidian Dark Mode</h3>
+            <p>Warm alabaster for daytime reading and eye-friendly obsidian dark mode with 5 custom accent colors for night study.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="install">
+      <div class="section-head">
+        <div class="kicker">DIRECT ANDROID APK</div>
+        <h2>Install safely in 30 seconds.</h2>
+        <p>Because ShobdoJoy is distributed directly in Bangladesh before our Play Store launch, Android asks for one quick permission the first time you install an APK.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Download the 5.8 MB APK</h3>
+          <p>Tap <strong>Download Free APK</strong> above and wait 1–2 seconds for <code>ShobdoJoy-v1.0.0-release.apk</code> to finish saving.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Allow "Install unknown apps"</h3>
+          <p>Tap the downloaded file. If Chrome or Files prompts you, tap <strong>Settings → Allow from this source</strong>, then press Back and tap <strong>Install</strong>.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Start free — unlock anytime</h3>
+          <p>Try 14 full words across Foundation, Explorer &amp; Master completely free. Ready for all 528 words? Unlock Lifetime Pro via bKash right inside the app.</p>
+        </div>
+      </div>
+
+      <div class="verify-bar">
+        <span>Package ID: <code>app.jobaverse.shobdojoy</code></span>
+        <span>Min Android: <code>Android 7.0+</code></span>
+        <span>Permissions: <code>Notifications only (optional)</code></span>
+      </div>
+    </section>
+
+    <section class="container" id="pricing">
+      <div class="section-head">
+        <div class="kicker">SIMPLE ONE-TIME PRICING</div>
+        <h2>Try free first. Pay once via bKash — own it forever.</h2>
+        <p>No credit card needed and no recurring monthly subscription. Activate Lifetime Pro offline in under a minute.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="plan">
+          <span class="plan-badge">Free Trial</span>
+          <div class="price-row">
+            <span class="price">৳0</span>
+            <span class="price-note">Forever free</span>
+          </div>
+          <ul>
+            <li>14 full words across all 3 levels (6 Foundation + 4 Explorer + 4 Master)</li>
+            <li>Browse &amp; search the entire 528-word Library with Bangla meanings</li>
+            <li>Full 5-Step Lesson, US/UK pronunciation &amp; Synonym Studio</li>
+            <li>Spaced-Repetition Memory Review &amp; Free Sample Exam</li>
+            <li>1 learner profile &amp; offline JSON progress backup</li>
+          </ul>
+          <a class="btn btn-secondary js-apk-link" href="./ShobdoJoy-v1.0.0-release.apk" download>Download Free APK</a>
+        </div>
+
+        <div class="plan pro">
+          <span class="plan-badge">Lifetime Pro · Early Bird</span>
+          <div class="price-row">
+            <span class="price js-launch-price">৳199</span>
+            <del class="price-old js-regular-price">৳299</del>
+            <span class="price-note">One-time via bKash</span>
+          </div>
+          <ul>
+            <li>All 528 words across Foundation, Explorer &amp; Master unlocked</li>
+            <li>All 5,280 quizzes, Saved Words Exam &amp; All-528 Boss Exams</li>
+            <li>Unlimited family profiles on the same device</li>
+            <li>Home screen Word of the Day widget &amp; Auto Streak Freeze</li>
+            <li>Instant 100% offline unlock key delivered on WhatsApp</li>
+          </ul>
+          <a class="btn btn-primary js-wa-buy" href="#install">Unlock via bKash &amp; WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="faq" aria-labelledby="faq-heading">
+      <div class="section-head">
+        <div class="kicker">QUESTIONS &amp; ANSWERS</div>
+        <h2 id="faq-heading">Everything you might wonder.</h2>
+      </div>
+
+      <div class="accordion">
+        <details>
+          <summary>Does ShobdoJoy really work 100% offline?</summary>
+          <p class="faq-body">Yes. All 528 words, 5,280 quiz questions, spaced repetition, and your Lifetime Pro verification live inside the 5.8 MB app. Once installed and activated, you never need mobile data or Wi-Fi to study.</p>
+        </details>
+
+        <details>
+          <summary>How does bKash Lifetime Pro unlock work?</summary>
+          <p class="faq-body">Open ShobdoJoy → tap <strong>Upgrade to Pro</strong> → send <strong class="js-launch-price">৳199</strong> via bKash Personal and tap <strong>Send Code on WhatsApp</strong>. We reply within minutes with your personal device unlock key. Paste it in the app and all 528 words unlock immediately offline.</p>
+        </details>
+
+        <details>
+          <summary>What if I change my phone or reset Android later?</summary>
+          <p class="faq-body">Two things keep you safe: first, tap <strong>Export progress backup</strong> in Settings to save a tiny <code>.json</code> copy of your mastered words and XP. Second, message us on WhatsApp with your previous bKash TrxID and we will issue a fresh Pro unlock key for your new phone at no extra cost.</p>
+        </details>
+
+        <details>
+          <summary>Can siblings or family members share one phone?</summary>
+          <p class="faq-body">Yes! ShobdoJoy Pro includes unlimited separate learner profiles on the same phone — each person gets their own active level, streak, review schedule, sentence journal, and XP bank.</p>
+        </details>
+
+        <details>
+          <summary>How will I receive future updates and new words?</summary>
+          <p class="faq-body">Tap <strong>Settings → Check for updates</strong> inside ShobdoJoy anytime. Installing a newer APK from this page upgrades right over your existing app while keeping all your mastered words, streak, and Pro license intact.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>ShobdoJoy (শব্দজয়) · <code>app.jobaverse.shobdojoy</code> · Built by Jobaverse</div>
+      <div>
+        <a class="js-wa-support" href="#pricing">WhatsApp Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Single config block — update your real APK path, bKash/WhatsApp number & price here before publishing!
+    const SITE_CONFIG = {
+      version: "1.0.0",
+      apkUrl: "./ShobdoJoy-v1.0.0-release.apk",
+      launchPrice: "৳199",
+      regularPrice: "৳299",
+      whatsappNumber: "8801521550820"
+    };
+
+    document.querySelectorAll(".js-apk-link").forEach(el => {
+      el.setAttribute("href", SITE_CONFIG.apkUrl);
+    });
+    document.querySelectorAll(".js-launch-price").forEach(el => {
+      el.textContent = SITE_CONFIG.launchPrice;
+    });
+    document.querySelectorAll(".js-regular-price").forEach(el => {
+      el.textContent = SITE_CONFIG.regularPrice;
+    });
+    document.querySelectorAll(".js-version-label").forEach(el => {
+      el.textContent = `Version ${SITE_CONFIG.version}`;
+    });
+
+    const buyMsg = encodeURIComponent(
+      `Assalamu Alaikum! I want to unlock ShobdoJoy Lifetime Pro (${SITE_CONFIG.launchPrice}) via bKash.`
+    );
+    document.querySelectorAll(".js-wa-buy").forEach(el => {
+      el.setAttribute("href", `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${buyMsg}`);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener noreferrer");
+    });
+
+    const supportMsg = encodeURIComponent(
+      `Assalamu Alaikum! I have a question about ShobdoJoy v${SITE_CONFIG.version}.`
+    );
+    document.querySelectorAll(".js-wa-support").forEach(el => {
+      el.setAttribute("href", `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${supportMsg}`);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener noreferrer");
+    });
+  </script>
+</body>
+</html>
